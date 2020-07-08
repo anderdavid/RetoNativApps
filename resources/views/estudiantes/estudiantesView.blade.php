@@ -9,15 +9,15 @@
 @section('content')
 	<script type="text/javascript">
 
-		var idPuesto="";
+		var idEstudiante="";
 
 		function eliminar(id){
-			idPuesto =id;
+			idEstudiante =id;
 		}
 
 		function borrar(){
 
-			location.href = "/estudiantes/destroy/"+idPuesto;
+			location.href = "/estudiantes/destroy/"+idEstudiante;
 		}
 
 	</script>
@@ -26,7 +26,7 @@
 		@if($numEstudiantes===0)
 			<div class="alert alert-danger alert-dismissible mt-3">
 			 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-			 	<strong>No hay Puestos</strong> 
+			 	<strong>No hay Estudiantes</strong> 
 			</div>
 		@else
 			<thead class="thead-dark">
@@ -78,7 +78,7 @@
 		@endif
 			
 	</table>
-	{!!$estudiantes->render()!!}
+	{!!$estudiantes->render()!!}	
 	<div class="modal" id="modalErase">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -105,6 +105,6 @@
 		</div>
 	</div>
     
-	<!-- <button type="button" class="btn btn-primary">Primary</button> -->
+	
 	
 @endsection

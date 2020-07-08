@@ -67,7 +67,10 @@ class EstudianteController extends Controller
      */
     public function show($id)
     {
-        return view('/estudiantes/estudiantesViewId', ['id' =>$id]);
+
+        $estudiante =\App\Estudiante::where('id',$id)->first();
+
+        return view('/estudiantes/estudiantesViewId', ['estudiante' =>$estudiante]);
     }
 
     /**
