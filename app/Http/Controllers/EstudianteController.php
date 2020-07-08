@@ -8,11 +8,6 @@ use Illuminate\Http\Response;
 class EstudianteController extends Controller
 {
 
-    /*touch /prueba_nativeapps/RetoNativApps/resources/views/estudiantes/estudiantesView.blade.php
-        touch /prueba_nativeapps/RetoNativApps/resources/views/estudiantes/estudiantesCreate.blade.php
-        touch /prueba_nativeapps/RetoNativApps/resources/views/estudiantes/estudiantesViewId.blade.php
-        touch /prueba_nativeapps/RetoNativApps/resources/views/estudiantes/estudiantesUpdate.blade.php*/
-
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +15,10 @@ class EstudianteController extends Controller
      */
     public function index()
     {
+       
+       
         return view('/estudiantes/estudiantesView');
+         
     }
 
     /**
@@ -30,7 +28,9 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        return view('/estudiantes/estudiantesCreate');
+        $arrayEdad =$this->generateArrayEdad();
+       
+        return view('/estudiantes/estudiantesCreate',['edad' =>$arrayEdad]);
     }
 
     /**
@@ -41,8 +41,15 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //return redirect('/estudiantes/estudiantesView');
-        return new Response("store");
+        $estudiante =new \App\Estudiante;
+        $estudiante->nombre =$request->nombre;
+        $estudiante->apellido=$request->apellido;
+        $estudiante->edad=$request->edad;
+        $estudiante->email=$request->email;
+        $estudiante->save();
+
+        return redirect('/estudiantes/show');
+        //return new Response("store ".$request->nombre);
     }
 
     /**
@@ -89,5 +96,13 @@ class EstudianteController extends Controller
     public function destroy($id)
     {
         return new Response("destroy ".$id);
+    }
+
+    public function generateArrayEdad(){
+        $edad =array();
+        for($i=6;$i<=75;$i++){
+            $edad[$i] =$i;
+        }
+        return $edad;
     }
 }
