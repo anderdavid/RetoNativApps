@@ -72,8 +72,9 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        $estudiante =\App\Estudiante::where('id',$id)->first();
-        return view('/cursos/cursosViewId', ['id' =>$id]);
+        $curso =\App\Curso::where('id',$id)->first();
+
+        return view('/cursos/cursosViewId', ['curso' =>$curso]);
     }
 
     /**
