@@ -4,22 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class CursoController extends Controller
 {
-    /*touch /prueba_nativeapps/RetoNativApps/resources/views/cursos/cursosView.blade.php
-    touch /prueba_nativeapps/RetoNativApps/resources/views/cursos/cursosCreate.blade.php
-    touch /prueba_nativeapps/RetoNativApps/resources/views/cursos/cursosViewId.blade.php
-    touch /prueba_nativeapps/RetoNativApps/resources/views/cursos/cursosUpdate.blade.php*/
-
-    /**
+   
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('/cursos/cursosView');
+    {  
+        $cursos = DB::table('cursos')
+                    ->select('cursos.*')
+                    ->orderBy('id', 'ASC')
+                    ->paginate(5);
+        
+        $numCursos = $cursos->count();
+        
+        return view('/cursos/cursosView',compact('cursos'), 
+            ['numCursos'=>$numCursos]);
+        //return view('/cursos/cursosView');
     }
 
     /**
