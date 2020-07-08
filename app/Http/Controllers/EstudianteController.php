@@ -114,7 +114,9 @@ class EstudianteController extends Controller
      */
     public function destroy($id)
     {
-        return new Response("destroy ".$id);
+       /* return new Response("destroy ".$id);*/
+       \App\Estudiante::where('id',$id)->delete();
+       return redirect('/estudiantes/show');
     }
 
     public function generateArrayEdad(){
