@@ -28,7 +28,7 @@
 								<input class="form-control" type="text" name="apellido" placeholder="Ingrese apellido de estudiante" required="true">
 							</div>
 							<div class="form-group">
-							  <label for="sel1">Select list:</label>
+							  <label for="sel1">Edad:</label>
 							  <select class="form-control" id="sel1" name="edad">
 							    @foreach ($edad as $mEdad)
 							    	<option value="{{$mEdad}}">{{$mEdad}}</option>

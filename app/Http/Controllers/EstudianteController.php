@@ -80,8 +80,11 @@ class EstudianteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-         return view('/estudiantes/estudiantesUpdate', ['id' =>$id]);
+    {    
+        $estudiante =\App\Estudiante::where('id',$id)->first();
+        $arraySelected =$this->generateArraySelected($estudiante->edad);
+        
+        return view('/estudiantes/estudiantesUpdate', ['edad' =>$arraySelected,'estudiante'=>$estudiante]);
     }
 
     /**
@@ -92,9 +95,15 @@ class EstudianteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        return new Response("update ".$id);
-        //return redirect('/estudiantes/estudiantesView');
+    {   
+        $estudiante =\App\Estudiante::where('id',$id)->first();
+        $estudiante->nombre =$request->nombre;
+        $estudiante->apellido=$request->apellido;
+        $estudiante->edad=$request->edad;
+        $estudiante->email=$request->email;
+        $estudiante->save();
+
+        return redirect('/estudiantes/show/'.$id);
     }
 
     /**
@@ -114,5 +123,17 @@ class EstudianteController extends Controller
             $edad[$i] =$i;
         }
         return $edad;
+    }
+
+    function generateArraySelected($selected){
+        $edadSelected =array();
+        for($i=6;$i<=75;$i++){
+            if($i==$selected){
+                  $edadSelected[$i] ="selected";
+            }else{
+                $edadSelected[$i] ="";
+            }
+        }
+        return $edadSelected;
     }
 }
