@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'EstudianteController@index');
 
-Route::get('/child', function () {
+/*Route::get('/child', function () {
     return view('child');
-});
+});*/
 
 Route::get('/estudiantes', 'EstudianteController@index');
 Route::get('/estudiantes/show', 'EstudianteController@index');
@@ -39,6 +37,7 @@ Route::get('/cursos/destroy/{id}', 'CursoController@destroy');
 
 Route::get('/funciones/asignarCursos', 'FuncionController@asignarCursos');
 Route::get('/funciones/top3', 'FuncionController@top3');
+
 
 
 
