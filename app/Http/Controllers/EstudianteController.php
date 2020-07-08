@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class EstudianteController extends Controller
 {
@@ -15,9 +16,15 @@ class EstudianteController extends Controller
      */
     public function index()
     {
+        $estudiantes = DB::table('estudiantes')
+            ->select('estudiantes.*')
+            ->orderBy('id', 'ASC')
+            ->paginate(5);
+
+        $numEstudiantes = $estudiantes->count();
        
-       
-        return view('/estudiantes/estudiantesView');
+        return view('/estudiantes/estudiantesView',compact('estudiantes'), 
+            ['numEstudiantes'=>$numEstudiantes]);
          
     }
 
@@ -49,7 +56,7 @@ class EstudianteController extends Controller
         $estudiante->save();
 
         return redirect('/estudiantes/show');
-        //return new Response("store ".$request->nombre);
+        
     }
 
     /**
