@@ -17,10 +17,11 @@ class CreateCursosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('horario');
-            $table->dateTime('fecha_inicio');
-            $table->dateTime('fecha_fin');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->integer('numero_estudiantes')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
@@ -34,3 +35,5 @@ class CreateCursosTable extends Migration
         Schema::dropIfExists('cursos');
     }
 }
+
+

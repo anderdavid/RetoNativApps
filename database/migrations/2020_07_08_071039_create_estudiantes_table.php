@@ -22,6 +22,7 @@ class CreateEstudiantesTable extends Migration
             $table->string('email');
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

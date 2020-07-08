@@ -18,6 +18,7 @@ class CreateEstudianteCursoTable extends Migration
             $table->integer('estudiante_id')->unsigned();
             $table->integer('curso_id')->unsigned();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

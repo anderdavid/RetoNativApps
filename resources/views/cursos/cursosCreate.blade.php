@@ -8,15 +8,59 @@
 
 @section('content')
 
-	<h1>Create cursos</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	 <p>This is my body content.</p>
-    
-	<button type="button" class="btn btn-primary">Primary</button>
+	<h1 class="text-secondary">Crear Curso</h1><br>
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<form method="POST" action="/cursos/store">
+					{{ csrf_field() }}
+					<div class="card">
+						<div class="card-body">
+							<div class="form-group">
+								<label for="nombre">Nombre: </label>
+								<input class="form-control" type="text" name="nombre_curso" placeholder="Ingrese nombre del curso " required="true">
+							</div>
+							<div class="form-group">
+								<label for="sel1">Horario:</label>
+							  	<select class="form-control" id="sel1" name="horario">
+								    @foreach ($horarios as $horario)
+								    	<option value="{{$horario}}">{{$horario}}</option>
+								    @endforeach
+							  	</select>
+							</div>
+							
+							<div class="form-group">
+								<label for="sel1">Fecha de Inicio:</label>
+								<input id="datepicker" width="276" name="fecha_inicio" value="2020-07-10" />
+							    <script>
+							        $('#datepicker').datepicker({
+							        	
+							            uiLibrary: 'bootstrap4',
+							            format: 'yyyy-mm-dd'
+							            
+							        });
+							       
+							    </script>	
+							</div>
+
+							<div class="form-group">
+								<label for="sel1">Fecha de Finalizacion:</label>
+								<input id="datepicker2" width="276" name="fecha_fin" value="2020-07-10"/>
+							    <script>
+							        $('#datepicker2').datepicker({
+
+							            uiLibrary: 'bootstrap4',
+							            format: 'yyyy-mm-dd'
+
+							        });
+							    </script>	
+							</div>
+							<div class="form-group">
+								<input class="btn btn-primary" type="submit" name="registrar" value="Registrar">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	
 @endsection

@@ -16,6 +16,11 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+         <!--  DatePicker -->
+        <script type="text/javascript" src="{{asset('js/messages.es-es.js') }}"></script>
+        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+        <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
     </head>
     <body>
         @section('sidebar')

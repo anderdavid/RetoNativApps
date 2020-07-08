@@ -19,7 +19,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-         return view('/cursos/cursosView');
+        return view('/cursos/cursosView');
     }
 
     /**
@@ -29,7 +29,15 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('/cursos/cursosCreate');
+        $horarios = [
+            "7am -9am",
+            "9am -11am",
+            "11am -1pm",
+            "2pm -4pm",
+            "4pm -6pm"
+        ];
+
+        return view('/cursos/cursosCreate', ['horarios' =>$horarios]);
     }
 
     /**
@@ -40,8 +48,14 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //return redirect('/peliculas');
-        return new Response("store");
+        $curso =new \App\Curso; 
+        $curso->nombre =$request->nombre_curso;
+        $curso->horario=$request->horario;
+        $curso->fecha_inicio=$request->fecha_inicio;
+        $curso->fecha_fin=$request->fecha_fin;
+        $curso->save();
+
+        return redirect('/cursos/show');
     }
 
     /**
@@ -52,6 +66,7 @@ class CursoController extends Controller
      */
     public function show($id)
     {
+        $estudiante =\App\Estudiante::where('id',$id)->first();
         return view('/cursos/cursosViewId', ['id' =>$id]);
     }
 
@@ -75,7 +90,13 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //return redirect('/peliculas');
+        $estudiante =\App\Estudiante::where('id',$id)->first();
+        $estudiante->nombre =$request->nombre;
+        $estudiante->apellido=$request->apellido;
+        $estudiante->edad=$request->edad;
+        $estudiante->email=$request->email;
+        $estudiante->save();
+        //return redirect('/cursos');
         return new Response("update ".$id);
     }
 
@@ -86,8 +107,9 @@ class CursoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //return redirect('/peliculas');
+    {   
+        \App\Estudiante::where('id',$id)->delete();
+        //return redirect('/cursos');
          return new Response("destroy ".$id);
     }
 }
