@@ -78,7 +78,7 @@
 		@endif
 			
 	</table>
-	{!!$puestos->render()!!}
+	{!!$estudiantes->render()!!}
 	<div class="modal" id="modalErase">
 		<div class="modal-dialog">
 			<div class="modal-content">
