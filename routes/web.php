@@ -36,6 +36,10 @@ Route::post('/cursos/update/{id}', 'CursoController@update');
 Route::get('/cursos/destroy/{id}', 'CursoController@destroy');
 
 Route::get('/funciones/asignarCursos', 'FuncionController@asignarCursos');
+Route::post('/funciones/store', 'FuncionController@store');
+Route::get('/funciones/estudianteCurso/{id}', 'FuncionController@estudianteCurso');
+
+
 Route::get('/funciones/top3', 'FuncionController@top3');
 
 

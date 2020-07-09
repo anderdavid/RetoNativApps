@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class FuncionController extends Controller
 {
@@ -13,13 +15,50 @@ class FuncionController extends Controller
      */
     public function asignarCursos()
     {
-        return view('/funciones/asignarCursos');
+        $cursos = \App\Curso::all();
+        $estudiantes = \App\Estudiante::all();
+
+
+
+        return view('/funciones/asignarCursos', ['cursos' =>$cursos,'estudiantes'=>$estudiantes]);
+        
     }
 
-    public function top3()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        return view('/funciones/asignarCursos');
-    }
+       /* return new Response("store");*/
+        $estudiante =\App\Estudiante::where('id',$request->estudiante)->first();
+        $curso =\App\Curso::where('id',$request->curso)->first();
 
+        $asignados = DB::table('curso_estudiante')
+                        ->select('curso_estudiante.*')
+                        ->where('estudiante_id','=',$request->estudiante)
+                        ->where('curso_id','=',$request->curso)
+                        ->get();
+
+        $count =$asignados->count();
+
+        if($count==0){
+           $curso->estudiantes()->attach($estudiante); 
+        }
+
+        return redirect('/funciones/estudianteCurso/'.$estudiante->id);
+      
+   }
+
+   public function estudianteCurso($id){
+
+     $estudiante =\App\Estudiante::find($id);
+
+     $cursos =$estudiante->cursos;
    
+     return view('/funciones/estudianteCurso', 
+        ['estudiante' =>$estudiante->nombre, 'cursos'=>$cursos]);
+   }
 }

@@ -10,6 +10,6 @@ class Estudiante extends Model
 	
     public function cursos(){
     	
-    	return $this->belongsToMany("App\Curso")->withTimestamps();
+    	return $this->belongsToMany("App\Curso");
     }
 }

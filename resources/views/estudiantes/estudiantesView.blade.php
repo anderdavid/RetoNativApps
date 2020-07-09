@@ -62,6 +62,12 @@
 								</a>
 
 							</div>
+							<div class="col-md-2">
+								<a  href="/funciones/estudianteCurso/{{$estudiante->id}}" class="btn btn-info">
+									Cursos
+								</a>
+
+							</div>
 
 							<div class="col-md-2">
 								<a onclick="eliminar({{$estudiante->id}})" data-toggle="modal" data-target="#modalErase" class="btn btn-danger" style="color:#fff">

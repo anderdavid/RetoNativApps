@@ -20,6 +20,10 @@
 		function borrar(){
 			location.href = "/estudiantes/destroy/"+idEstudiante;
 		}
+
+		function verCursos(id){
+			location.href="/funciones/estudianteCurso/"+id;
+		}
 	</script>
 	<div class="container">
 		<h1 class="text-secondary">Ver estudiante </h1><br>
@@ -45,6 +49,7 @@
 				<div class="col-md-6">
 					
 					<button class="btn btn-primary" onclick="editar({{$estudiante->id}})">Editar</button>
+					<button class="btn btn-success" onclick="verCursos({{$estudiante->id}})">Ver Cursos</button>
 					<button class="btn btn-danger"  onclick="eliminar({{$estudiante->id}})" data-toggle="modal" data-target="#modalErase">Eliminar</button>
 				</div>
 				<div class="col-md-6"></div>
