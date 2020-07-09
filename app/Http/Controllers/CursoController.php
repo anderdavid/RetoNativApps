@@ -119,9 +119,10 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {   
-        \App\curso::where('id',$id)->delete();
-        //return redirect('/cursos');
-         return new Response("destroy ".$id);
+        \App\Curso::where('id',$id)->delete();
+        
+        return redirect('/cursos/show');
+         
     }
 
     function generateArrayCursoSelected($horarioSelect){
