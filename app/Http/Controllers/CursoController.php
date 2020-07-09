@@ -85,7 +85,10 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        return view('/cursos/cursosUpdate', ['id' =>$id]);
+        $curso =\App\Curso::where('id',$id)->first();
+        $horarios = $this->generateArrayCursoSelected($curso->horario);
+        
+        return view('/cursos/cursosUpdate', ['curso' =>$curso, 'horarios'=>$horarios, 'horario'=>$curso->horario]);
     }
 
     /**
@@ -97,14 +100,15 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $estudiante =\App\Estudiante::where('id',$id)->first();
-        $estudiante->nombre =$request->nombre;
-        $estudiante->apellido=$request->apellido;
-        $estudiante->edad=$request->edad;
-        $estudiante->email=$request->email;
-        $estudiante->save();
-        //return redirect('/cursos');
-        return new Response("update ".$id);
+        $curso =\App\Curso::where('id',$id)->first();
+        $curso->nombre =$request->nombre_curso;
+        $curso->horario=$request->horario;
+        $curso->fecha_inicio=$request->fecha_inicio;
+        $curso->fecha_fin=$request->fecha_fin;
+        $curso->save();
+
+        return redirect('/cursos/show/'.$id);
+        
     }
 
     /**
@@ -115,8 +119,29 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {   
-        \App\Estudiante::where('id',$id)->delete();
+        \App\curso::where('id',$id)->delete();
         //return redirect('/cursos');
          return new Response("destroy ".$id);
+    }
+
+    function generateArrayCursoSelected($horarioSelect){
+        $horarios =array(
+            array("7am -9am",""),
+            array("9am -11am",""),
+            array("11am -1pm",""),
+            array("2pm -4pm",""),
+            array("4pm -6pm","")
+        );
+
+        for($i=0;$i<count($horarios);$i++){
+            if($horarios[$i][0]==$horarioSelect){
+                $horarios[$i][1]="selected";
+            }else{
+                $horarios[$i][1]="";
+            }
+        }
+
+
+       return $horarios;
     }
 }
