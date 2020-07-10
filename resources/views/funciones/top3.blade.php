@@ -7,16 +7,19 @@
 @endsection
 
 @section('content')
+	<!-- {{json_encode($top3)}} -->
 
-	<h1>top 3</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	 <p>This is my body content.</p>
-    
-	<button type="button" class="btn btn-primary">Primary</button>
+	 
+	<h1 class="text-primary">Top 3</h1>
+	<p>Cursos con mas estudiantes inscritos en los ultimos tres meses</p>
+	
+	<ul class="list-group">
+		@foreach ($top3 as $top)
+			 <li class="list-group-item list-group-item-success">
+			 	<strong>{{$top->nombre}}:    </strong>con {{$top->inscritos}} estudiantes inscritos en los ultimos tres meses
+			 </li>
+		@endforeach
+	 
+	</ul>
 	
 @endsection

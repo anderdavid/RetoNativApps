@@ -61,4 +61,27 @@ class FuncionController extends Controller
      return view('/funciones/estudianteCurso', 
         ['estudiante' =>$estudiante->nombre, 'cursos'=>$cursos]);
    }
+
+   public function top3(){
+
+    $top3 =DB::table('curso_estudiante')
+            ->join('cursos','cursos.id','=','curso_estudiante.curso_id')
+            ->selectRaw('COUNT(*) as inscritos,curso_estudiante.*,cursos.nombre')
+             ->whereBetween('curso_estudiante.created_at',
+                array(
+                    DB::raw('DATE_SUB(NOW(),INTERVAL 3 MONTH)'),
+                    DB::raw(' NOw()')
+                )
+            )
+            ->groupBy('curso_estudiante.curso_id')
+            ->orderBy('inscritos', 'desc')
+            ->limit(3)
+            ->get();
+
+
+
+
+    return view('/funciones/top3', ['top3'=>$top3]);
+    
+    }
 }
