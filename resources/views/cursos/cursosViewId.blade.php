@@ -36,7 +36,7 @@
 					<p><strong>Horario: </strong>{{$curso->horario}}</p>
 					<p><strong>Fecha de Inicio: </strong>{{$curso->fecha_inicio}}</p>
 					<p><strong>Fecha de Finalizacion: </strong>{{$curso->fecha_fin}}</p>
-					<p><strong>Numero de Cursos: </strong>{{$curso->numero_Cursos}}</p>
+					<p><strong>Numero de estudiantes: </strong>{{$curso->numero_estudiantes}}</p>
 				</div>
 			</div>
 		</div>
