@@ -67,7 +67,7 @@
         <div class="container">
             @yield('content')
         </div>
-       <footer>
+       <footer style="margin-top:300px">
         <p>Creado por Anderson Rodriguez para prueba tecnica, 2020</p>
       </footer>
     </body>
