@@ -15,7 +15,14 @@ class CursoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
+    {
+        $mCursos = \App\Curso::all();
+        foreach ($mCursos as $curso) {
+            $countEstudiantes=$curso->estudiantes()->count();
+            $curso->numero_estudiantes =$countEstudiantes;
+            $curso->save();
+        }
+
         $cursos = DB::table('cursos')
                     ->select('cursos.*')
                     ->orderBy('id', 'ASC')

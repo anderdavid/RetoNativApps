@@ -19,7 +19,7 @@ class CreateCursosTable extends Migration
             $table->string('horario');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->integer('numero_estudiantes')->nullable();
+            $table->integer('numero_estudiantes')->nullable()->default(0);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
