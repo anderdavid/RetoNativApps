@@ -21,12 +21,12 @@
 		}
 
 	</script>
-	<h1>Ver Estudiantes</h1>
+	<h1>Ver Estudiantessssss</h1>
 	<table class="table  table-striped table-responsive-md mt-3">
 		@if($numEstudiantes===0)
 			<div class="alert alert-danger alert-dismissible mt-3">
 			 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-			 	<strong>No hay Estudiantessss</strong> 
+			 	<strong>No hay Estudiantes</strong> 
 			</div>
 		@else
 			<thead class="thead-dark">
